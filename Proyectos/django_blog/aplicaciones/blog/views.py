@@ -1,8 +1,8 @@
-from django.shortcuts import render
-from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, UpdateView, DeleteView
-from aplicaciones.blog.models import Autor
-from .forms import FormularioLogin, FormularioUsuario
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from .forms import UserRegisterForm
+
 
 def get_queryset(self):
     return self.objects.filter(estado=True)
@@ -65,14 +65,15 @@ def vidaecosistema(request):
 def vidasubmarina(request):
     return render(request, "categorias/vida_submarina.html")
 
-class ListadoUsuario(ListView):
-    model = Autor
-    template_name = 'blog/listar_usuario.html'
-    
-    def get_queryset(self):
-        return self.model.objects.filter(estado=True)
-class RegistrarUsuario(CreateView):
-    model = Autor
-    form_class = FormularioUsuario
-    template_name = 'usuarios/crear_usuario.html'
-    success_url = reverse_lazy('blog:listar_usuarios')
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            messages.success(request, f'Usuario {username} creado')
+            return redirect('/')
+    else:
+        form = UserRegisterForm()
+    context = {'form':form}
+    return render(request, 'usuarios/register.html',context)

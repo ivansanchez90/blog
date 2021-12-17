@@ -1,9 +1,9 @@
 from django.urls import path
-from django.contrib.auth.decorators import login_required
 from .views import *
 urlpatterns = [
-    path('registrar_usuario/',login_required(RegistrarUsuario.as_view()), name = 'registar_usuario'),
+   
     path('',home, name = 'index'),
+    path('register/',register, name='register'),
     path('generales/',generales, name = 'generales'),
     path('accion_clima/',accionclima, name='accion_clima'),
     path('agua_limpia/',agualimpia, name='agua_limpia'),
@@ -22,6 +22,5 @@ urlpatterns = [
     path('trabajo_decente/',trabajodecente, name='trabajo_decente'),
     path('vida_ecosistema/',vidaecosistema, name='vida_ecosistema'),
     path('vida_submarina/',vidasubmarina, name='vida_submarina'),
-    path('listado_usuarios/',login_required(ListadoUsuario.as_view()), name = 'listar_usuarios' ),
     
 ]

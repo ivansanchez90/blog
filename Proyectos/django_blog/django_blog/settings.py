@@ -101,7 +101,7 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-AUTH_USER_MODEL = 'blog.Autor'
+AUTH_USER_MODEL = 'auth.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/

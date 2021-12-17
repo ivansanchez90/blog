@@ -2,18 +2,24 @@
 {% load static %}
 
 {% block titulo %}
-Acción por el Clima
+Registro
 {% endblock titulo %}
 
 {% block titulo_principal %}
-Acción por el Clima
+Registro
 {% endblock titulo_principal %}
 
 {% block imagen%}
 {%  static 'img/img5.jpg'  %}
 {% endblock imagen%}
 
-
 {% block content %}
+<div class="container">
+<form class="form" method="post">
+    {% csrf_token %}
+    {{ form.as_p}}
 
+    <button type="submit" id="submit">Registrarse</button>
+</form>
+</div>
 {% endblock content %}

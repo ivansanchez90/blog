@@ -1,5 +1,9 @@
 from django.shortcuts import render
 
+def get_queryset(self):
+    return self.objects.filter(estado=True)
+
+
 def home(request):
     return render(request, "index.html")
 

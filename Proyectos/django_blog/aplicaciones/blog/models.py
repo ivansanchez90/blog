@@ -1,7 +1,33 @@
 from django.db import models
 from django.db.models.deletion import CASCADE
 from ckeditor.fields import RichTextField
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
+class UsuarioManager(BaseUserManager):
+    def create_user(self,email,username,nombres,apellidos, password = None):
+        if not email:
+            raise ValueError('El usuario debe tener un correo electrónico!')
+
+        usuario = self.model(
+            username = username, 
+            email = self.normalize_email(email), 
+            nombres = nombres, 
+            apellidos = apellidos)
+
+        usuario.set_password(password)
+        usuario.save()
+        return usuario
+
+    def create_superuser(self,username, email, nombres, apellidos, password):
+        usuario = self.create_user(
+            email,
+            username = username, 
+            nombres = nombres, 
+            apellidos = apellidos
+        )
+        usuario.usuario_administrador = True
+        usuario.save()
+        return usuario
 class Categoria(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField('Nombre de la Categoría', max_length=100, null=False, blank=False)
@@ -15,19 +41,35 @@ class Categoria(models.Model):
     def __str__(self):
         return self.nombre
 
-class Autor(models.Model):
+class Autor(AbstractBaseUser):
     id = models.AutoField(primary_key=True)
-    nombres = models.CharField('Nombres de Autor', max_length=255, null=False, blank=False)
-    apellidos = models.CharField('Apellidos de Autor', max_length=255, null=False, blank=False)
+    username = models.CharField('Nombre de usuario', unique=True, max_length=100)
+    email = models.EmailField('Correo Electrónico', max_length=254, unique=True)
+    nombres = models.CharField('Nombres de Autor', max_length=255, null=True, blank=True)
+    apellidos = models.CharField('Apellidos de Autor', max_length=255, null=True, blank=True)
     estado = models.BooleanField('Autor Activo/No Activo', default = True)
+    usuario_administrador = models.BooleanField(default=False)
     fecha_creacion = models.DateField('Fecha de Creación', auto_now=False, auto_now_add=True)
+    objects = UsuarioManager()
 
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email''username','nombres','apellidos']
     class Meta:
         verbose_name = 'Autor'
         verbose_name_plural = 'Autores'
 
     def __str__(self):
         return "{0},{1}".format(self.apellidos, self.nombres)
+
+    def has_perm(self,perm,obj=None):
+        return True
+
+    def has_module_parms(self,app_label):
+        return True
+
+    @property
+    def is_staff(self):
+        return self.usuario_administrador
     
 class Post(models.Model):
     id = models.AutoField(primary_key=True)

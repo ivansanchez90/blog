@@ -1,25 +1,5 @@
 from django.urls import path
-from .views import (
-    home,
-    generales,
-    accionclima,
-    agualimpia,
-    alianzaobjetivos,
-    ciudadessostenibles,
-    educacioncalidad,
-    energiasostenible,
-    finpobreza,
-    hambrecero,
-    igualdadgenero,
-    industria,
-    pazjusticia, 
-    produccionconsumo,
-    reducciondesigualdad,
-    saludbienestar,
-    trabajodecente,
-    vidaecosistema,
-    vidasubmarina,
-)
+from .views import *
 urlpatterns = [
     path('',home, name = 'index'),
     path('generales/',generales, name = 'generales'),

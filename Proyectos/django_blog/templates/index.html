@@ -49,10 +49,20 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'blog:register' %}">Registrar</a>
           </li>
+          {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
+            <a class="nav-link" href="#">Crear Blog</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'blog:logout' %}">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'blog:login' %}">Login</a>
+          </li>
+          {% endif %}
         </ul>
+        {% block notif %}
         <div style="color:aliceblue">
           {% if messages %}
           {% for message in messages %}
@@ -62,6 +72,7 @@
           {% endfor %}
           {% endif%}
         </div>
+        {% endblock notif %}
       </div>
     </div>
   </nav>

@@ -6,12 +6,22 @@ from .models import Post, Categoria
 
 
 
+
 def home(request):
     posts = Post.objects.filter(estado = True)
     context = {'posts':posts}
     return render(request, "index.html",context)
 
+def detallePost(request,slug):
+    post = Post.objects.get(
+        slug = slug
+    )
+    return render(request,'post.html',{'detalle_post':post})
+
 def generales(request):
+    posts = Post.objects.filter(estado = True, 
+    categoria = Categoria.objects.get(nombre = 'General'))
+    context = {'posts':posts}
     return render(request, "categorias/generales.html",context)
 
 def accionclima(request):

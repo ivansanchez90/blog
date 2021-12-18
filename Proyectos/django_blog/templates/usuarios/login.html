@@ -2,24 +2,27 @@
 {% load static %}
 
 {% block titulo %}
-Registro
+Login
 {% endblock titulo %}
 
 {% block titulo_principal %}
-Registro
+Login
 {% endblock titulo_principal %}
 
 {% block imagen%}
-{%  static 'img/img5.jpg'  %}
+{%  static 'img/login-alan-walker.gif'  %}
 {% endblock imagen%}
 
-{% block content %}
-<div class="container">
-<form class="form" method="post">
-    {% csrf_token %}
-    {{ form.as_p}}
+{% block categorias %}
+<div class="container center">
+    <form class="form" method="post">
+        {% csrf_token %}
+        {{ form.as_p}}
+    
+        <button type="submit" id="submit">Login</button>
+    </form>
+    </div>
+{% endblock categorias %}
 
-    <button type="submit" id="submit">Login</button>
-</form>
-</div>
-{% endblock content %}
+{% block contenido%}
+{% endblock contenido%}

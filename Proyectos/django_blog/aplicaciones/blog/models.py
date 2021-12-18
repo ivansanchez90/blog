@@ -38,7 +38,7 @@ class Autor(models.Model):
 class Post(models.Model):
     id = models.AutoField(primary_key=True)
     titulo = models.CharField('Título',max_length=90, blank=False, null=False)
-    slug = models.CharField('Slug',max_length=100, blank=False, null=False)
+    slug = models.SlugField()
     descripcion = models.CharField('Descripción',max_length=110, blank=False, null=False)
     contenido = RichTextField()
     imagen = models.URLField(max_length=255, blank=False, null=False)

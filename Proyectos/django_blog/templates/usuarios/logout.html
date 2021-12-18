@@ -2,22 +2,26 @@
 {% load static %}
 
 {% block titulo %}
-Registro
+Logout
 {% endblock titulo %}
 
 {% block titulo_principal %}
-Registro
+<div style="color:aliceblue">
+    <h3>Sesión cerrada.</h3>
+</div>
 {% endblock titulo_principal %}
 
 {% block imagen%}
-{%  static 'img/img5.jpg'  %}
+{%  static 'img/tenor.gif'  %}
 {% endblock imagen%}
 
-{% block content %}
 {% block notif %}
-        <div style="color:aliceblue">
-            <h3>Sesión cerrada.</h3>
-        </div>
-        {% endblock notif %}
-<h1>Sesión cerrada.</h1>
-{% endblock content %}
+{% endblock notif %}
+{% block categorias %}
+
+{% endblock categorias %}
+
+{% block contenido%}
+{% endblock contenido%}
+
+        

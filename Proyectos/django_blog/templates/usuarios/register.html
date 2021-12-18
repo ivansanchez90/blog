@@ -2,24 +2,27 @@
 {% load static %}
 
 {% block titulo %}
-Registro
+Registrarse
 {% endblock titulo %}
 
 {% block titulo_principal %}
-Registro
+Registrarse
 {% endblock titulo_principal %}
 
 {% block imagen%}
-{%  static 'img/img5.jpg'  %}
+{%  static 'img/img6.jpg'  %}
 {% endblock imagen%}
 
-{% block content %}
-<div class="container">
-<form class="form" method="post">
-    {% csrf_token %}
-    {{ form.as_p}}
+{% block categorias %}
+<div class="container center">
+    <form class="form" method="post">
+        {% csrf_token %}
+        {{ form.as_p}}
+    
+        <button type="submit" id="submit">Registrarse</button>
+    </form>
+    </div>
+{% endblock categorias %}
 
-    <button type="submit" id="submit">Registrarse</button>
-</form>
-</div>
-{% endblock content %}
+{% block contenido%}
+{% endblock contenido%}

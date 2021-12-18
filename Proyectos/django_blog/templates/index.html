@@ -44,9 +44,6 @@
             <a class="nav-link" href="{% url 'blog:index' %}">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'blog:generales' %}">Generales</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="{% url 'blog:register' %}">Registrar</a>
           </li>
           {% if request.user.is_authenticated %}
@@ -89,7 +86,7 @@
           <div class="site-heading">
             <h1>{% block titulo_principal %}{% endblock titulo_principal %}</h1>
             <div class="categorias">
-              <a href="{% url 'blog:generales' %}"><img src="{% static 'img/ods.png' %}" alt=""></a>
+              <a href="{% url 'blog:index' %}"><img src="{% static 'img/ods.png' %}" alt=""></a>
               <a href="{% url 'blog:fin_pobreza' %}"><img src="{% static 'img/finpobreza.png' %}" alt=""></a>
               <a href="{% url 'blog:hambre_cero' %}"><img src="{% static 'img/hambrecero.png' %}" alt=""></a>
               <a href="{% url 'blog:salud_bienestar' %}"><img src="{% static 'img/saludybienestar.png' %}" alt=""></a>
@@ -120,27 +117,32 @@
 
 
 
-  {% block content %}
+  
   <!-- Main Content -->
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
+        {% if posts%}
+        {% for post in posts %}
         <div class="post-preview">
           <a href="post.html">
             <h2 class="post-title">
-              Man must explore, and this is exploration at its greatest
+              {{ post.titulo }}
             </h2>
             <h3 class="post-subtitle">
-              Problems look mighty small from 150 miles up
+              {{ post.descripcion }}
             </h3>
           </a>
-          <p class="post-meta">Posted by
-            <a href="#">Start Bootstrap</a>
-            on September 24, 2018
+          <p class="post-meta">Escrito por
+            <strong>{{ post.autor }}</strong> el
+            {{ post.fecha_creacion }}
           </p>
         </div>
         <hr>
-
+        {% endfor %}
+        {% else %}
+        <h1>No existen post registrados!</h1>
+        {% endif %}
         <!-- Pager -->
         <div class="clearfix">
           <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
@@ -150,7 +152,7 @@
   </div>
 
   <hr>
-  {% endblock content %}< <!-- Footer <footer>
+   <!-- Footer <footer>
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">

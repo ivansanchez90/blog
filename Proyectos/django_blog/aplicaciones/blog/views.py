@@ -12,92 +12,109 @@ def home(request):
     return render(request, "index.html",context)
 
 def generales(request):
-    return render(request, "categorias/generales.html")
+    return render(request, "categorias/generales.html",context)
 
 def accionclima(request):
     posts = Post.objects.filter(estado = True, 
     categoria = Categoria.objects.get(nombre = 'Acción por el Clima'))
-    return render(request, "categorias/accion_clima.html")
+    context = {'posts':posts}
+    return render(request, "categorias/accion_clima.html",context)
 
 def agualimpia(request):
     posts = Post.objects.filter(estado = True, 
     categoria = Categoria.objects.get(nombre = 'Agua Limpia y Saneamiento'))
-    return render(request, "categorias/agua_limpia.html")
+    context = {'posts':posts}
+    return render(request, "categorias/agua_limpia.html",context)
 
 def alianzaobjetivos(request):
     posts = Post.objects.filter(estado = True, 
     categoria = Categoria.objects.get(nombre = 'Alianzas Para Lograr Los Objetivos'))
-    return render(request, "categorias/alianza_objetivos.html")
+    context = {'posts':posts}
+    return render(request, "categorias/alianza_objetivos.html",context)
 
 def ciudadessostenibles(request):
     posts = Post.objects.filter(estado = True, 
     categoria = Categoria.objects.get(nombre = 'Ciudades y Comunidades Sostenibles'))
-    return render(request, "categorias/ciudades_sostenibles.html")
+    context = {'posts':posts}
+    return render(request, "categorias/ciudades_sostenibles.html",context)
 
 def educacioncalidad(request):
     posts = Post.objects.filter(estado = True, 
     categoria = Categoria.objects.get(nombre = 'Educación de Calidad'))
-    return render(request, "categorias/educacion_calidad.html")
+    context = {'posts':posts}
+    return render(request, "categorias/educacion_calidad.html",context)
 
 def energiasostenible(request):
     posts = Post.objects.filter(estado = True, 
     categoria = Categoria.objects.get(nombre = 'Energía Sostenible y No Contaminable'))
-    return render(request, "categorias/energia_sostenible.html")
+    context = {'posts':posts}
+    return render(request, "categorias/energia_sostenible.html",context)
 
 def finpobreza(request):
     posts = Post.objects.filter(estado = True, 
     categoria = Categoria.objects.get(nombre = 'Fin de la pobreza'))
-    return render(request, "categorias/fin_pobreza.html")
+    context = {'posts':posts}
+    return render(request, "categorias/fin_pobreza.html",context)
 
 def hambrecero(request):
     posts = Post.objects.filter(estado = True, 
     categoria = Categoria.objects.get(nombre = 'Hambre Cero'))
-    return render(request, "categorias/hambre_cero.html")
+    context = {'posts':posts}
+    return render(request, "categorias/hambre_cero.html",context)
 
 def igualdadgenero(request):
     posts = Post.objects.filter(estado = True, 
     categoria = Categoria.objects.get(nombre = 'Igualdad de Género'))
-    return render(request, "categorias/igualdad_genero.html")
+    context = {'posts':posts}
+    return render(request, "categorias/igualdad_genero.html",context)
 
 def industria(request):
     posts = Post.objects.filter(estado = True, 
     categoria = Categoria.objects.get(nombre = 'Industria, Innovación e Infraestructura'))
-    return render(request, "categorias/industria.html")
+    context = {'posts':posts}
+    return render(request, "categorias/industria.html",context)
 
 def pazjusticia(request):
     posts = Post.objects.filter(estado = True, 
     categoria = Categoria.objects.get(nombre = 'Paz, Justicia e Instituciones Sólidas'))
-    return render(request, "categorias/paz_justicia.html")
+    context = {'posts':posts}
+    return render(request, "categorias/paz_justicia.html",context)
 
 def produccionconsumo(request):
     posts = Post.objects.filter(estado = True, 
     categoria = Categoria.objects.get(nombre = 'Producción y Consumo Responsable'))
-    return render(request, "categorias/produccion_consumo.html")
+    context = {'posts':posts}
+    return render(request, "categorias/produccion_consumo.html",context)
 
 def reducciondesigualdad(request):
     posts = Post.objects.filter(estado = True, 
     categoria = Categoria.objects.get(nombre = 'Reducción de las Desigualdades'))
-    return render(request, "categorias/reduccion_desigualdad.html")
+    context = {'posts':posts}
+    return render(request, "categorias/reduccion_desigualdad.html",context)
 
 def saludbienestar(request):
     posts = Post.objects.filter(estado = True, 
     categoria = Categoria.objects.get(nombre = 'Salud y Bienestar'))
-    return render(request, "categorias/salud_bienestar.html")
+    context = {'posts':posts}
+    return render(request, "categorias/salud_bienestar.html",context)
 
 def trabajodecente(request):
     posts = Post.objects.filter(estado = True, 
     categoria = Categoria.objects.get(nombre = 'Trabajo Decente y Crecimiento Económico'))
-    return render(request, "categorias/trabajo_decente.html")
+    context = {'posts':posts}
+    return render(request, "categorias/trabajo_decente.html",context)
 
 def vidaecosistema(request):
     posts = Post.objects.filter(estado = True, 
     categoria = Categoria.objects.get(nombre = 'Vida de Ecosistemas Terrestres'))
-    return render(request, "categorias/vida_ecosistema.html")
+    context = {'posts':posts}
+    return render(request, "categorias/vida_ecosistema.html",context)
 
 def vidasubmarina(request):
     posts = Post.objects.filter(estado = True, 
     categoria = Categoria.objects.get(nombre = 'Vida Submarina'))
-    return render(request, "categorias/vida_submarina.html")
+    context = {'posts':posts}
+    return render(request, "categorias/vida_submarina.html",context)
 
 
 def register(request):

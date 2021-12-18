@@ -5,7 +5,7 @@ from .forms import UserRegisterForm
 from .models import Post, Categoria
 from django.shortcuts import get_object_or_404
 from django.db.models import Q 
-
+from django.core.paginator import Paginator
 
 
 def home(request):
@@ -16,8 +16,12 @@ def home(request):
             Q(titulo__icontains = queryset)|
             Q(descripcion__icontains = queryset)
         ).distinct()
-    context = {'posts':posts}
-    return render(request, "index.html",context)
+
+    paginator = Paginator(posts,2)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+
+    return render(request, "index.html",{'posts':posts})
 
 def detallePost(request,slug):
     post = get_object_or_404(Post,slug = slug)
@@ -35,8 +39,11 @@ def generales(request):
             estado = True,
             categoria = Categoria.objects.get(nombre__iexact = 'General'),
         ).distinct()
-    context = {'posts':posts}
-    return render(request, "categorias/generales.html",context)
+        paginator = Paginator(posts,2)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)
+    
+    return render(request, "categorias/generales.html",{'posts':posts})
 
 def accionclima(request):
     queryset = request.GET.get("buscar")
@@ -50,8 +57,11 @@ def accionclima(request):
             estado = True,
             categoria = Categoria.objects.get(nombre__iexact = 'Acción por el Clima')
         ).distinct()
-    context = {'posts':posts}
-    return render(request, "categorias/accion_clima.html",context)
+        paginator = Paginator(posts,2)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)
+    
+    return render(request, "categorias/accion_clima.html",{'posts':posts})
 
 def agualimpia(request):
     queryset = request.GET.get("buscar")
@@ -65,8 +75,11 @@ def agualimpia(request):
             estado = True,
             categoria = Categoria.objects.get(nombre__iexact = 'Agua Limpia y Saneamiento')
         ).distinct()
-    context = {'posts':posts}
-    return render(request, "categorias/agua_limpia.html",context)
+        paginator = Paginator(posts,2)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)
+    
+    return render(request, "categorias/agua_limpia.html",{'posts':posts})
 
 def alianzaobjetivos(request):
     queryset = request.GET.get("buscar")
@@ -80,8 +93,11 @@ def alianzaobjetivos(request):
             estado = True,
             categoria = Categoria.objects.get(nombre__iexact = 'Alianzas Para Lograr Los Objetivos')
         ).distinct()
-    context = {'posts':posts}
-    return render(request, "categorias/alianza_objetivos.html",context)
+        paginator = Paginator(posts,2)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)
+    
+    return render(request, "categorias/alianza_objetivos.html",{'posts':posts})
 
 def ciudadessostenibles(request):
     queryset = request.GET.get("buscar")
@@ -95,8 +111,11 @@ def ciudadessostenibles(request):
             estado = True,
             categoria = Categoria.objects.get(nombre__iexact = 'Ciudades y Comunidades Sostenibles')
         ).distinct()
-    context = {'posts':posts}
-    return render(request, "categorias/ciudades_sostenibles.html",context)
+        paginator = Paginator(posts,2)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)
+    
+    return render(request, "categorias/ciudades_sostenibles.html",{'posts':posts})
 
 def educacioncalidad(request):
     queryset = request.GET.get("buscar")
@@ -110,8 +129,11 @@ def educacioncalidad(request):
             estado = True,
             categoria = Categoria.objects.get(nombre__iexact = 'Educación de Calidad')
         ).distinct()
-    context = {'posts':posts}
-    return render(request, "categorias/educacion_calidad.html",context)
+        paginator = Paginator(posts,2)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)
+    
+    return render(request, "categorias/educacion_calidad.html",{'posts':posts})
 
 def energiasostenible(request):
     queryset = request.GET.get("buscar")
@@ -125,8 +147,11 @@ def energiasostenible(request):
             estado = True,
             categoria = Categoria.objects.get(nombre__iexact = 'Energía Sostenible y No Contaminable')
         ).distinct()
-    context = {'posts':posts}
-    return render(request, "categorias/energia_sostenible.html",context)
+        paginator = Paginator(posts,2)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)
+    
+    return render(request, "categorias/energia_sostenible.html",{'posts':posts})
 
 def finpobreza(request):
     queryset = request.GET.get("buscar")
@@ -140,8 +165,11 @@ def finpobreza(request):
             estado = True,
             categoria = Categoria.objects.get(nombre__iexact = 'Fin de la pobreza')
         ).distinct()
-    context = {'posts':posts}
-    return render(request, "categorias/fin_pobreza.html",context)
+        paginator = Paginator(posts,2)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)
+    
+    return render(request, "categorias/fin_pobreza.html",{'posts':posts})
 
 def hambrecero(request):
     queryset = request.GET.get("buscar")
@@ -155,8 +183,11 @@ def hambrecero(request):
             estado = True,
             categoria = Categoria.objects.get(nombre__iexact = 'Hambre Cero')
         ).distinct()
-    context = {'posts':posts}
-    return render(request, "categorias/hambre_cero.html",context)
+        paginator = Paginator(posts,2)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)
+    
+    return render(request, "categorias/hambre_cero.html",{'posts':posts})
 
 def igualdadgenero(request):
     queryset = request.GET.get("buscar")
@@ -170,8 +201,11 @@ def igualdadgenero(request):
             estado = True,
             categoria = Categoria.objects.get(nombre__iexact = 'Igualdad de Género')
         ).distinct()
-    context = {'posts':posts}
-    return render(request, "categorias/igualdad_genero.html",context)
+        paginator = Paginator(posts,2)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)
+    
+    return render(request, "categorias/igualdad_genero.html",{'posts':posts})
 
 def industria(request):
     queryset = request.GET.get("buscar")
@@ -185,8 +219,11 @@ def industria(request):
             estado = True,
             categoria = Categoria.objects.get(nombre__iexact = 'Industria, Innovación e Infraestructura')
         ).distinct()
-    context = {'posts':posts}
-    return render(request, "categorias/industria.html",context)
+        paginator = Paginator(posts,2)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)
+    
+    return render(request, "categorias/industria.html",{'posts':posts})
 
 def pazjusticia(request):
     queryset = request.GET.get("buscar")
@@ -200,8 +237,11 @@ def pazjusticia(request):
             estado = True,
             categoria = Categoria.objects.get(nombre__iexact = 'Paz, Justicia e Instituciones Sólidas')
         ).distinct()
-    context = {'posts':posts}
-    return render(request, "categorias/paz_justicia.html",context)
+        paginator = Paginator(posts,2)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)
+    
+    return render(request, "categorias/paz_justicia.html",{'posts':posts})
 
 def produccionconsumo(request):
     queryset = request.GET.get("buscar")
@@ -215,8 +255,11 @@ def produccionconsumo(request):
             estado = True,
             categoria = Categoria.objects.get(nombre__iexact = 'Producción y Consumo Responsable')
         ).distinct()
-    context = {'posts':posts}
-    return render(request, "categorias/produccion_consumo.html",context)
+        paginator = Paginator(posts,2)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)
+    
+    return render(request, "categorias/produccion_consumo.html",{'posts':posts})
 
 def reducciondesigualdad(request):
     queryset = request.GET.get("buscar")
@@ -230,8 +273,11 @@ def reducciondesigualdad(request):
             estado = True,
             categoria = Categoria.objects.get(nombre__iexact = 'Reducción de las Desigualdades')
         ).distinct()
-    context = {'posts':posts}
-    return render(request, "categorias/reduccion_desigualdad.html",context)
+        paginator = Paginator(posts,2)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)
+    
+    return render(request, "categorias/reduccion_desigualdad.html",{'posts':posts})
 
 def saludbienestar(request):
     queryset = request.GET.get("buscar")
@@ -245,8 +291,11 @@ def saludbienestar(request):
             estado = True,
             categoria = Categoria.objects.get(nombre__iexact = 'Salud y Bienestar')
         ).distinct()
-    context = {'posts':posts}
-    return render(request, "categorias/salud_bienestar.html",context)
+        paginator = Paginator(posts,2)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)
+    
+    return render(request, "categorias/salud_bienestar.html",{'posts':posts})
 
 def trabajodecente(request):
     queryset = request.GET.get("buscar")
@@ -260,8 +309,11 @@ def trabajodecente(request):
             estado = True,
             categoria = Categoria.objects.get(nombre__iexact = 'Trabajo Decente y Crecimiento Económico')
         ).distinct()
-    context = {'posts':posts}
-    return render(request, "categorias/trabajo_decente.html",context)
+        paginator = Paginator(posts,2)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)
+    
+    return render(request, "categorias/trabajo_decente.html",{'posts':posts})
 
 def vidaecosistema(request):
     queryset = request.GET.get("buscar")
@@ -275,8 +327,11 @@ def vidaecosistema(request):
             estado = True,
             categoria = Categoria.objects.get(nombre__iexact = 'Vida de Ecosistemas Terrestres')
         ).distinct()
-    context = {'posts':posts}
-    return render(request, "categorias/vida_ecosistema.html",context)
+        paginator = Paginator(posts,2)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)
+    
+    return render(request, "categorias/vida_ecosistema.html",{'posts':posts})
 
 def vidasubmarina(request):
     queryset = request.GET.get("buscar")
@@ -291,8 +346,11 @@ def vidasubmarina(request):
             estado = True,
             categoria = Categoria.objects.get(nombre__iexact = 'Vida Submarina'),
         ).distinct()
-    context = {'posts':posts}
-    return render(request, "categorias/vida_submarina.html",context)
+        paginator = Paginator(posts,2)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)
+    
+    return render(request, "categorias/vida_submarina.html",{'posts':posts})
 
 def register(request):
     if request.method == 'POST':

@@ -77,15 +77,31 @@
 
   <!-- Page Header -->
   <header class="masthead"
-    style="background-image: url({% block imagen%}{% static 'img/img1.jpg' %}{% endblock imagen%})">
+    style="background-image: url({% block imagen%}{% static 'img/img1.jpg' %}{% endblock imagen%})" >
 
     <div class="overlay flex"></div>
     <div class="container">
       <div class="row">
         <div class="col-lg-9 col-md-10 mx-auto col-xl-11">
-          <div class="site-heading">
+          <div class="site-heading" style="padding-top: 80px; padding-bottom: 40px;">
             <h1>{% block titulo_principal %}{% endblock titulo_principal %}</h1>
             {% block categorias %}
+            <div class="container" style="margin-bottom: 20px;">
+              <div class="row">
+                <div class="col-md-12 search">
+                  <form method="get">
+                    <div id='custom-search-input'>
+                      <div class="input-group col-md-12">
+                        <input type="text" class="form-control" placeholder="Buscar..." name="buscar">
+                        <span class="input-group-list"></span>
+                        <i class="icon icon-search"></i>
+                        <button type="submit" class="boton btn-success">Buscar</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div> <!-- barra de busqueda --> 
             <div class="categorias">
               <a href="{% url 'blog:index' %}"><img src="{% static 'img/ods.png' %}" alt=""></a>
               <a href="{% url 'blog:fin_pobreza' %}"><img src="{% static 'img/finpobreza.png' %}" alt=""></a>
@@ -117,6 +133,7 @@
     </div>
 
   </header>
+
 
 
 

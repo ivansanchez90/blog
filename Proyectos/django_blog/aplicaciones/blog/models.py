@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.deletion import CASCADE
 from ckeditor.fields import RichTextField
+from django.contrib.auth.models import User
 
 
 class Categoria(models.Model):
@@ -36,9 +37,9 @@ class Autor(models.Model):
 
     
 class Post(models.Model):
-    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(Autor, on_delete=models.CASCADE, related_name='posts')
     titulo = models.CharField('Título',max_length=90, blank=False, null=False)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
     descripcion = models.CharField('Descripción',max_length=110, blank=False, null=False)
     contenido = RichTextField()
     imagen = models.URLField(max_length=255, blank=False, null=False)
@@ -53,3 +54,28 @@ class Post(models.Model):
 
     def __str__(self):
         return self.titulo
+
+class Comment(models.Model):
+    autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    content = models.TextField()
+
+
+    def __str__(self):
+        return self.user.username
+
+class PostView(models.Model):
+    autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.username
+
+class Like(models.Model):
+    autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username

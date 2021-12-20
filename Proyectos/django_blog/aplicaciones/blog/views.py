@@ -1,11 +1,13 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import UserRegisterForm
-from .models import Post, Categoria
+from django.views.generic.list import ListView
+from .forms import PostForm, UserRegisterForm
+from .models import Autor, Post, Categoria
 from django.shortcuts import get_object_or_404
 from django.db.models import Q 
 from django.core.paginator import Paginator
+from django.views.generic import CreateView, UpdateView, DeleteView
 
 
 def home(request):
@@ -364,3 +366,25 @@ def register(request):
         form = UserRegisterForm()
     context = {'form':form}
     return render(request, 'usuarios/register.html',context)
+
+class PostCreateView(CreateView):
+    model = Post
+class PostUpdateView(UpdateView):
+    model = Post
+
+class PostDeleteView(DeleteView):
+    model = Post
+
+def post(request):
+    current_user = get_object_or_404(Autor, pk=request.user.id)
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = current_user
+            post.save()
+            messages.success(request, 'Post enviado')
+            return redirect('/')
+    else:
+        form = PostForm()
+    return render(request, 'usuarios/create.html', {'form':form})

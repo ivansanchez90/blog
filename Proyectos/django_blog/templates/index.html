@@ -48,7 +48,7 @@
           </li>
           {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="#">Crear Blog</a>
+            <a class="nav-link" href="{% url 'blog:create' %}">Crear Blog</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'blog:logout' %}">Logout</a>

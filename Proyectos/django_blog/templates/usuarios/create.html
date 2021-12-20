@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block titulo %}
+Crear Post
+{% endblock titulo %}
+
+{% block titulo_principal %}
+Crear Post
+{% endblock titulo_principal %}
+
+{% block imagen%}
+{%  static 'img/img6.jpg'  %}
+{% endblock imagen%}
+
+{% block categorias %}
+<div class="container center">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="post" id="">Post</button>
+    </form>
+    </div>
+{% endblock categorias %}
+
+{% block contenido%}
+{% endblock contenido%}
+
+{% block busqueda%}
+{% endblock busqueda%}

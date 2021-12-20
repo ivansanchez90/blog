@@ -30,8 +30,12 @@ Post List
             <strong>{{ object.author }}</strong> el
             {{ object.publish_date }} <br>
             Categoria: {{ object.categoria }}
+            <hr>
+            <span><i class="fas fa-thumbs-up"></i>{{ object.get_like_count }}</span>
+            <span><i class="fas fa-eye"></i>{{ object.get_view_count }}</span>
+            <span><i class="fas fa-comments"></i>{{ object.get_comment_count }}</span><br>
+            <span>Publicado hace {{ object.publish_date|timesince }} </span>
           </p>
-          
         </div>
         <hr>
         </div>

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post, PostView, Like, Comment, Categoria
 from django.contrib import messages
-from .forms import PostForm, UserRegisterForm
+from .forms import PostForm, UserRegisterForm, CommentForm
 from django.db.models import Q 
 from django.core.paginator import Paginator
 class PostListView(ListView):
@@ -11,6 +11,29 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
 
+    def post(self, *args, **kwargs):
+        form = CommentForm(self.request.POST)
+        if form.is_valid():
+            post = self.get_object()
+            comment = form.instance
+            comment.user = self.request.user
+            comment.post = post
+            comment.save()
+            return redirect("blog:detail", slug=post.slug)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'form':CommentForm()
+        })
+        return context
+
+    def get_object(self, **kwargs):
+        object = super().get_object(**kwargs)
+        if self.request.user.is_authenticated:
+            PostView.objects.get_or_create(user=self.request.user, post=object)
+
+        return object
 
 class PostCreateView(CreateView):
     form_class = PostForm
@@ -400,6 +423,7 @@ def home(request):
 def detallePost(request,slug):
     post = get_object_or_404(Post,slug = slug)
     return render(request,'post.html',{'detalle_post':post})
+
 
 def like(request, slug):
     post = get_object_or_404(Post, slug = slug)

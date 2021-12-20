@@ -14,6 +14,7 @@ urlpatterns = [
     path('login/',LoginView.as_view(template_name='usuarios/login.html'), name="login"),
     path('logout/',LogoutView.as_view(template_name='usuarios/logout.html'), name="logout"),
     path('generales/',generales, name = 'generales'),
+    path('comentarios/',home, name ='comentarios'),
     path('accion_clima/',accionclima, name='accion_clima'),
     path('agua_limpia/',agualimpia, name='agua_limpia'),
     path('alianza_objetivos/',alianzaobjetivos, name='alianza_objetivos'),

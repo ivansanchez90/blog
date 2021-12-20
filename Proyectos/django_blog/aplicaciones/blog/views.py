@@ -7,6 +7,7 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 class PostListView(ListView):
     model = Post
+    
 
 class PostDetailView(DetailView):
     model = Post
@@ -434,3 +435,18 @@ def like(request, slug):
         return redirect('blog:detalle_post', slug=slug)
     Like.objects.create(user=request.user, post=post)
     return redirect('blog:detalle_post', slug=slug)
+
+def home(request):
+    queryset = request.GET.get("buscar")
+    posts = Post.objects.filter(state = True)
+    if queryset:
+        posts = Post.objects.filter(
+            Q(title__icontains = queryset)|
+            Q(content__icontains = queryset)
+        ).distinct()
+
+    paginator = Paginator(posts,2)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+
+    return render(request, "blog:detail",{'posts':posts})

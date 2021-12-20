@@ -31,13 +31,36 @@
   .<i class="far fa-thumbs-up"></i>
 </a>
 <hr>
+{% if request.user.is_authenticated %}
+  <h4>Deja un Comentario</h4>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary" type="submit">Comentar</button>
+  </form>
+  <hr />
+  <h5>Comentarios</h5>
+  {% for comment in object.comments %}
+  <div>
+    <p>{{ comment.content }}
+      <br />
+      <small>{{ comment.timestamp|timesince }} ago</small>
+    </p>
+  </div>
+  <hr />
+  {% endfor %}
+  {% else %}
+  <a href="{% url 'blog:login' %}" class="btn btn-primary btn-block">Login to comment</a>
+  {% endif %}
+
+</div>
 <div>
   <span><i class="fas fa-thumbs-up"></i>{{ object.get_like_count }}</span>
   <span><i class="fas fa-eye"></i>{{ object.get_view_count }}</span>
   <span><i class="fas fa-comments"></i>{{ object.get_comment_count }}</span><br>
   <span class="float-left">Publicado hace {{ object.publish_date|timesince }} </span>
 </div>
-</div>
+
 {% endblock contenido%}
 
 {% block categorias %}

@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'aplicaciones.blog',
     'import_export',
     'django.contrib.sites',
-
+    'crispy_forms',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -105,6 +105,8 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'full',
     },
 }
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 AUTH_USER_MODEL = 'blog.User'
 

@@ -17,7 +17,7 @@ Registrarse
 <div class="container center">
     <form class="form" method="post">
         {% csrf_token %}
-        {{ form.as_p}}
+        {{ form|crispy}}
     
         <button type="submit" id="submit">Registrarse</button>
     </form>

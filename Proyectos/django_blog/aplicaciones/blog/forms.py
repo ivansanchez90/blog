@@ -18,6 +18,9 @@ class UserRegisterForm(UserCreationForm):
         help_texts = {k:"" for k in fields}
 
 class CommentForm(forms.ModelForm):
+    content = forms.CharField(required=True, widget=forms.Textarea(attrs={
+        'rows': 4
+    }))
     class Meta:
         model = Comment
         fields = ('content', )

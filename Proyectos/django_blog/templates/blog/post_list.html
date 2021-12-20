@@ -23,7 +23,7 @@ Post List
         {% for object in object_list %}
         <div class="container">
         <div class="post-preview">
-          <a href="#">
+          <a href="{{ object.get_absolute_url }}">
             <h2 class="post-title">
               {{ object.title }}
             </h2>

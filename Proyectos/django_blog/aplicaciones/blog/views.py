@@ -400,3 +400,12 @@ def home(request):
 def detallePost(request,slug):
     post = get_object_or_404(Post,slug = slug)
     return render(request,'post.html',{'detalle_post':post})
+
+def like(request, slug):
+    post = get_object_or_404(Post, slug = slug)
+    like_qs = Like.objects.filter(user=request.user, post=post)
+    if like_qs.exists():
+        like_qs[0].delete()
+        return redirect('blog:detalle_post', slug=slug)
+    Like.objects.create(user=request.user, post=post)
+    return redirect('blog:detalle_post', slug=slug)

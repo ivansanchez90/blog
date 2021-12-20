@@ -12,11 +12,37 @@
 
 {% block titulo_principal %}
   <h1>{{ detalle_post.title }}</h1>
-  <p>Escrito por: {{ detalle_post.autor }}</p>
+  <p>Escrito por: {{ detalle_post.author }}</p>
 {% endblock titulo_principal %}
 
 {% block contenido%}
 <p>{{ detalle_post.content|safe }}</p>
+
+
+
+<hr/>
+
+
+<div style="padding: 10px">
+  <p>{{ post.content }}</p>
+</div>
+
+<hr/>
+
+<div>
+<h4>Te gusta el post? Dejame un like!</h4>
+
+<a class="text-muted" href="{{ detalle_post.get_like_url }}">
+  .<i class="far fa-thumbs-up"></i>
+</a>
+<hr>
+<div>
+  <span><i class="fas fa-thumbs-up"></i>{{ detalle_post.get_like_count }}</span>
+  <span><i class="fas fa-eye"></i>{{ detalle_post.get_view_count }}</span>
+  <span><i class="fas fa-comments"></i>{{ detalle_post.get_comment_count }}</span><br>
+  <span class="float-left">Publicado hace {{ detalle_post.publish_date|timesince }} </span>
+</div>
+</div>
 {% endblock contenido%}
 
 {% block categorias %}

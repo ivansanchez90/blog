@@ -35,6 +35,7 @@ urlpatterns = [
     path('<slug>/update', PostUpdateView.as_view(),name='update'),
     path('<slug>/delete', PostDeleteView.as_view(),name='delete'),
     path('<slug:slug>',detallePost, name = 'detalle_post'),
+    path('like/<slug>/', like, name='like')
     
     # path('',home, name = 'index'),
     

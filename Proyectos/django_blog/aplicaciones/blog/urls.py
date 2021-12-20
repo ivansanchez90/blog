@@ -3,18 +3,12 @@ from django.urls.conf import include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import LoginView, LogoutView
-
-from .views import (
-    PostListView,
-    PostDetailView,
-    PostCreateView,
-    PostUpdateView,
-    PostDeleteView
-)
+from .views import *
 
 
 urlpatterns = [
     path('accounts/', include('allauth.urls')),
+    path('register/',register, name='register'),
     path('', PostListView.as_view(),name='list'),
     path('create/', PostCreateView.as_view(),name='create'),
     path('login/',LoginView.as_view(template_name='usuarios/login.html'), name="login"),

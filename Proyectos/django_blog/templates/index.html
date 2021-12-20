@@ -43,19 +43,20 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Inicio</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Registrar</a>
-          </li>
+          
           {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="#">Crear Blog</a>
+            <a class="nav-link" href="{% url 'blog:create' %}">Crear Blog</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Logout</a>
+            <a class="nav-link" href="{% url 'blog:logout' %}">Logout</a>
           </li>
           {% else %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'blog:login' %}}">Login</a>
+            <a class="nav-link" href="{% url 'blog:register' %}">Registrar</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'blog:login' %}">Login</a>
           </li>
           {% endif %}
         </ul>

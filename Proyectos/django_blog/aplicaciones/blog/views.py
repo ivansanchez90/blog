@@ -63,8 +63,8 @@ def generales(request):
     
     if queryset:
         posts = Post.objects.filter(
-            Q(titulo__icontains = queryset)|
-            Q(descripcion__icontains = queryset),
+            Q(title__icontains = queryset)|
+            Q(content__icontains = queryset),
             state = True,
             categoria = Categoria.objects.get(name__iexact = 'General'),
         ).distinct()
@@ -81,8 +81,8 @@ def accionclima(request):
     
     if queryset:
         posts = Post.objects.filter(
-            Q(titulo__icontains = queryset)|
-            Q(descripcion__icontains = queryset),
+            Q(title__icontains = queryset)|
+            Q(content__icontains = queryset),
             state = True,
             categoria = Categoria.objects.get(name__iexact = 'Acción por el Clima')
         ).distinct()
@@ -99,8 +99,8 @@ def agualimpia(request):
     
     if queryset:
         posts = Post.objects.filter(
-            Q(titulo__icontains = queryset)|
-            Q(descripcion__icontains = queryset),
+            Q(title__icontains = queryset)|
+            Q(content__icontains = queryset),
             state = True,
             categoria = Categoria.objects.get(name__iexact = 'Agua Limpia y Saneamiento')
         ).distinct()
@@ -117,8 +117,8 @@ def alianzaobjetivos(request):
     
     if queryset:
         posts = Post.objects.filter(
-            Q(titulo__icontains = queryset)|
-            Q(descripcion__icontains = queryset),
+            Q(title__icontains = queryset)|
+            Q(content__icontains = queryset),
             state = True,
             categoria = Categoria.objects.get(name__iexact = 'Alianzas Para Lograr Los Objetivos')
         ).distinct()
@@ -135,8 +135,8 @@ def ciudadessostenibles(request):
     
     if queryset:
         posts = Post.objects.filter(
-            Q(titulo__icontains = queryset)|
-            Q(descripcion__icontains = queryset),
+            Q(title__icontains = queryset)|
+            Q(content__icontains = queryset),
             state = True,
             categoria = Categoria.objects.get(name__iexact = 'Ciudades y Comunidades Sostenibles')
         ).distinct()
@@ -153,8 +153,8 @@ def educacioncalidad(request):
     
     if queryset:
         posts = Post.objects.filter(
-            Q(titulo__icontains = queryset)|
-            Q(descripcion__icontains = queryset),
+            Q(title__icontains = queryset)|
+            Q(content__icontains = queryset),
             state = True,
             categoria = Categoria.objects.get(name__iexact = 'Educación de Calidad')
         ).distinct()
@@ -171,8 +171,8 @@ def energiasostenible(request):
     
     if queryset:
         posts = Post.objects.filter(
-            Q(titulo__icontains = queryset)|
-            Q(descripcion__icontains = queryset),
+            Q(title__icontains = queryset)|
+            Q(content__icontains = queryset),
             state = True,
             categoria = Categoria.objects.get(name__iexact = 'Energía Sostenible y No Contaminable')
         ).distinct()
@@ -189,8 +189,8 @@ def finpobreza(request):
     
     if queryset:
         posts = Post.objects.filter(
-            Q(titulo__icontains = queryset)|
-            Q(descripcion__icontains = queryset),
+            Q(title__icontains = queryset)|
+            Q(content__icontains = queryset),
             state = True,
             categoria = Categoria.objects.get(name__iexact = 'Fin de la pobreza')
         ).distinct()
@@ -207,8 +207,8 @@ def hambrecero(request):
     
     if queryset:
         posts = Post.objects.filter(
-            Q(titulo__icontains = queryset)|
-            Q(descripcion__icontains = queryset),
+            Q(title__icontains = queryset)|
+            Q(content__icontains = queryset),
             state = True,
             categoria = Categoria.objects.get(name__iexact = 'Hambre Cero')
         ).distinct()
@@ -225,8 +225,8 @@ def igualdadgenero(request):
     
     if queryset:
         posts = Post.objects.filter(
-            Q(titulo__icontains = queryset)|
-            Q(descripcion__icontains = queryset),
+            Q(title__icontains = queryset)|
+            Q(content__icontains = queryset),
             state = True,
             categoria = Categoria.objects.get(name__iexact = 'Igualdad de Género')
         ).distinct()
@@ -243,8 +243,8 @@ def industria(request):
     
     if queryset:
         posts = Post.objects.filter(
-            Q(titulo__icontains = queryset)|
-            Q(descripcion__icontains = queryset),
+            Q(title__icontains = queryset)|
+            Q(content__icontains = queryset),
             state = True,
             categoria = Categoria.objects.get(name__iexact = 'Industria, Innovación e Infraestructura')
         ).distinct()
@@ -261,8 +261,8 @@ def pazjusticia(request):
     
     if queryset:
         posts = Post.objects.filter(
-            Q(titulo__icontains = queryset)|
-            Q(descripcion__icontains = queryset),
+            Q(title__icontains = queryset)|
+            Q(content__icontains = queryset),
             state = True,
             categoria = Categoria.objects.get(name__iexact = 'Paz, Justicia e Instituciones Sólidas')
         ).distinct()
@@ -279,8 +279,8 @@ def produccionconsumo(request):
     
     if queryset:
         posts = Post.objects.filter(
-            Q(titulo__icontains = queryset)|
-            Q(descripcion__icontains = queryset),
+            Q(title__icontains = queryset)|
+            Q(content__icontains = queryset),
             state = True,
             categoria = Categoria.objects.get(name__iexact = 'Producción y Consumo Responsable')
         ).distinct()
@@ -297,8 +297,8 @@ def reducciondesigualdad(request):
     
     if queryset:
         posts = Post.objects.filter(
-            Q(titulo__icontains = queryset)|
-            Q(descripcion__icontains = queryset),
+            Q(title__icontains = queryset)|
+            Q(content__icontains = queryset),
             state = True,
             categoria = Categoria.objects.get(name__iexact = 'Reducción de las Desigualdades')
         ).distinct()
@@ -315,8 +315,8 @@ def saludbienestar(request):
     
     if queryset:
         posts = Post.objects.filter(
-            Q(titulo__icontains = queryset)|
-            Q(descripcion__icontains = queryset),
+            Q(title__icontains = queryset)|
+            Q(content__icontains = queryset),
             state = True,
             categoria = Categoria.objects.get(name__iexact = 'Salud y Bienestar')
         ).distinct()
@@ -333,8 +333,8 @@ def trabajodecente(request):
     
     if queryset:
         posts = Post.objects.filter(
-            Q(titulo__icontains = queryset)|
-            Q(descripcion__icontains = queryset),
+            Q(title__icontains = queryset)|
+            Q(content__icontains = queryset),
             state = True,
             categoria = Categoria.objects.get(name__iexact = 'Trabajo Decente y Crecimiento Económico')
         ).distinct()
@@ -351,8 +351,8 @@ def vidaecosistema(request):
     
     if queryset:
         posts = Post.objects.filter(
-            Q(titulo__icontains = queryset)|
-            Q(descripcion__icontains = queryset),
+            Q(title__icontains = queryset)|
+            Q(content__icontains = queryset),
             state = True,
             categoria = Categoria.objects.get(name__iexact = 'Vida de Ecosistemas Terrestres')
         ).distinct()
@@ -370,8 +370,8 @@ def vidasubmarina(request):
     if queryset:
         posts = Post.objects.filter(
             
-            Q(titulo__icontains = queryset)|
-            Q(descripcion__icontains = queryset),
+            Q(title__icontains = queryset)|
+            Q(content__icontains = queryset),
             state = True,
             categoria = Categoria.objects.get(name__iexact = 'Vida Submarina'),
         ).distinct()
@@ -380,3 +380,19 @@ def vidasubmarina(request):
         posts = paginator.get_page(page)
     
     return render(request, "categorias/vida_submarina.html",{'posts':posts})
+
+
+def home(request):
+    queryset = request.GET.get("buscar")
+    posts = Post.objects.filter(state = True)
+    if queryset:
+        posts = Post.objects.filter(
+            Q(title__icontains = queryset)|
+            Q(content__icontains = queryset)
+        ).distinct()
+
+    paginator = Paginator(posts,2)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+
+    return render(request, "index.html",{'posts':posts})

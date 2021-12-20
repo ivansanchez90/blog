@@ -9,7 +9,7 @@ from .views import *
 urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('register/',register, name='register'),
-    path('', PostListView.as_view(),name='list'),
+    path('',home, name = 'list'),
     path('create/', PostCreateView.as_view(),name='create'),
     path('login/',LoginView.as_view(template_name='usuarios/login.html'), name="login"),
     path('logout/',LogoutView.as_view(template_name='usuarios/logout.html'), name="logout"),

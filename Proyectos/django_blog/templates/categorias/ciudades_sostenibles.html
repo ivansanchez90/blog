@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block titulo %}
-Ciudades y Comunidades Sostenibles
+Acción por el Clima
 {% endblock titulo %}
 
 {% block titulo_principal %}
-Ciudades y Comunidades Sostenibles
+Acción por el Clima
 {% endblock titulo_principal %}
 
 {% block imagen%}
@@ -15,3 +15,30 @@ Ciudades y Comunidades Sostenibles
 
 {% block categorias %}
 {% endblock categorias %}
+
+{% block contenido%}
+        {% if posts %}
+        {% for post in posts %}
+        <div class="container">
+        <div class="post-preview">
+            <h2 class="post-title">
+              {{ post.title }}
+            </h2>
+            <h3 class="post-subtitle">
+              {{ post.content }}
+            </h3>
+          </a>
+          <p class="post-meta">Escrito por
+            <strong>{{ post.author }}</strong> el
+            {{ post.publish_date }} <br>
+            Categoria: {{ post.categoria }}
+          </p>
+          
+        </div>
+        <hr>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h1>No existen post registrados!</h1>
+        {% endif %}
+        {% endblock contenido%}

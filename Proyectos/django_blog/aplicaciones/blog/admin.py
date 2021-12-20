@@ -4,14 +4,14 @@ from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 from .models import Post, Comment, Like, PostView, User
 
-# class CategoriaResource(resources.ModelResource):
-#     class Meta:
-#         model = Categoria
+class CategoriaResource(resources.ModelResource):
+    class Meta:
+        model = Categoria
 
-# class CategoriaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-#     search_fields = ['name']
-#     list_display = ('name', 'state', 'publish_date')
-#     resource_class = CategoriaResource
+class CategoriaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    search_fields = ['name']
+    list_display = ('name', 'state', 'publish_date')
+    resource_class = CategoriaResource
 
 # class UserResource(resources.ModelResource):
 #     class Meta:
@@ -22,7 +22,7 @@ from .models import Post, Comment, Like, PostView, User
 #     list_display = ('nombres', 'apellidos', 'estado', 'fecha_creacion')
 #     resource_class = UserResource
 
-admin.site.register(Categoria)
+admin.site.register(Categoria, CategoriaAdmin)
 admin.site.register(User)
 admin.site.register(Post)
 admin.site.register(Comment)

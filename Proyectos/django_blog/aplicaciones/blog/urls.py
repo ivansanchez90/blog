@@ -34,6 +34,7 @@ urlpatterns = [
     path('<slug>/', PostDetailView.as_view(),name='detail'),
     path('<slug>/update', PostUpdateView.as_view(),name='update'),
     path('<slug>/delete', PostDeleteView.as_view(),name='delete'),
+    path('<slug:slug>',detallePost, name = 'detalle_post'),
     
     # path('',home, name = 'index'),
     

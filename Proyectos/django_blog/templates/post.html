@@ -3,25 +3,24 @@
 
 
 {% block titulo %}
-  {{ detalle_post.titulo }}
+  {{ detalle_post.title }}
 {% endblock titulo %}
 
 {% block imagen %}
-  {{ detalle_post.imagen }}
+  {{ detalle_post.thumbnail }}
 {% endblock imagen %}
 
 {% block titulo_principal %}
-  <h1>{{ detalle_post.titulo }}</h1>
-  <p>{{ detalle_post.descripcion }}</p>
+  <h1>{{ detalle_post.title }}</h1>
   <p>Escrito por: {{ detalle_post.autor }}</p>
 {% endblock titulo_principal %}
 
 {% block contenido%}
-<p>{{ detalle_post.contenido|safe }}</p>
+<p>{{ detalle_post.content|safe }}</p>
 {% endblock contenido%}
 
 {% block categorias %}
 {% endblock categorias %}
 
-{% block busqueda%}
-{% endblock busqueda%}
+{% block search%}
+{% endblock search%}

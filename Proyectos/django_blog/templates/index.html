@@ -23,7 +23,7 @@
 
   <!-- Custom styles for this template -->
   <link href="{% static 'css/clean-blog.css' %}" rel="stylesheet">
-
+  <script src="https://kit.fontawesome.com/f81b28ed9e.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -152,7 +152,7 @@
       {% for post in posts %}
       <div class="container">
       <div class="post-preview">
-        <a href="{{ object.get_absolute_url }}">
+        <a href="{% url 'blog:detalle_post' post.slug %}">
           <h2 class="post-title">
             {{ post.title }}
           </h2>
@@ -165,7 +165,15 @@
           {{ post.publish_date }} <br>
           Categoria: {{ post.categoria }}
         </p>
-        
+        <hr/>
+        <p>
+          <span><i class="fas fa-thumbs-up"></i>{{ post.get_like_count }}</span>
+          <span><i class="fas fa-eye"></i>{{ post.get_view_count }}</span>
+          <span><i class="fas fa-comments"></i>{{ post.get_comment_count }}</span>
+        </p>
+        <p class="cardd-text">
+         Publicado hace {{ post.publish_date|timesince }} 
+        </p>
       </div>
       <hr>
       </div>

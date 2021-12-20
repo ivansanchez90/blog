@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+{% block titulo %}
+<h1>{{ object.title }}</h1>
+  
+{% endblock titulo %}
+
+{% block imagen %}
+  {{ object.thumbnail  }}
+{% endblock imagen %}
+
+{% block titulo_principal %}
+  <h1>{{ object.title }}</h1>
+  <p>Escrito por: {{ post.author }}</p>
+{% endblock titulo_principal %}
+
+{% block contenido%}
+<p>{{ object.content|safe }}</p>
+{% endblock contenido%}
+
+{% block categorias %}
+{% endblock categorias %}
+
+{% block busqueda%}
+{% endblock busqueda%}
+
+{% block search %}
+{% endblock search %}

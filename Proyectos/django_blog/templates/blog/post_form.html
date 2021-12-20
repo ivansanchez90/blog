@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block titulo %}
+<h1>Post {{ view_type|title }}</h1>
+{% endblock titulo %}
+{% block titulo_principal %}
+<h1>Post {{ view_type|title }}</h1>
+{% endblock titulo_principal %}
+{% block imagen%}
+{% endblock imagen%}
+
+{% block categorias %}
+{% endblock categorias %}
+{% block content%}
+<div class="container">
+    <h1>Esta es la Vista de {{ view_type|title }}</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" type='submit'>{{ view_type|title }}</button>
+    </form>
+</div>
+{% endblock content%}
+
+{% block search %}
+{% endblock search %}

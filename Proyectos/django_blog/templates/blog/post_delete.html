@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block titulo %}
+<h1>Post {{ view_type }}</h1>
+{% endblock titulo %}
+{% block titulo_principal %}
+<h1>Post {{ view_type }}</h1>
+{% endblock titulo_principal %}
+{% block imagen%}
+{% endblock imagen%}
+{% block search %}
+{% endblock search %}
+{% block categorias %}
+{% endblock categorias %}
+{% block content%}
+<div class="container">
+    {% for object in object_list%}
+        {{ object.title}}
+    {% endfor %}
+</div>
+{% endblock content%}
+

@@ -31,7 +31,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="{% url 'blog:index' %}">Objetivos de Desarrollo Sostenible</a>
+      <a class="navbar-brand" href="#">Objetivos de Desarrollo Sostenible</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
         data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
         aria-label="Toggle navigation">
@@ -41,21 +41,21 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'blog:index' %}">Inicio</a>
+            <a class="nav-link" href="#">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'blog:register' %}">Registrar</a>
+            <a class="nav-link" href="#">Registrar</a>
           </li>
           {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'blog:create' %}">Crear Blog</a>
+            <a class="nav-link" href="#">Crear Blog</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'blog:logout' %}">Logout</a>
+            <a class="nav-link" href="#">Logout</a>
           </li>
           {% else %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'blog:login' %}">Login</a>
+            <a class="nav-link" href="{% url 'blog:login' %}}">Login</a>
           </li>
           {% endif %}
         </ul>
@@ -85,7 +85,7 @@
         <div class="col-lg-9 col-md-10 mx-auto col-xl-11">
           <div class="site-heading" style="padding-top: 80px; padding-bottom: 40px;">
             <h1>{% block titulo_principal %}{% endblock titulo_principal %}</h1>
-            {% block busqueda%}
+        {% block search %}
             <nav >
               <div class="container" style="margin-bottom: 20px;">
                 <div class="row">
@@ -104,7 +104,7 @@
                 </div>
               </div> 
             </nav><!-- barra de busqueda --> 
-            {% endblock busqueda%}
+            {% endblock search %}
             
             {% block categorias %}<div class="categorias">
               <a href="{% url 'blog:index' %}"><img src="{% static 'img/ods.png' %}" alt=""></a>
@@ -140,7 +140,7 @@
 
 
 
-
+  {% block content%}
   <!-- Main Content -->
   <div class="container">
     <div class="row">
@@ -150,7 +150,7 @@
         {% if posts%}
         {% for post in posts %}
         <div class="post-preview">
-          <a href="{% url 'blog:detalle_post' post.slug %}">
+          <a href="#">
             <h2 class="post-title">
               {{ post.titulo }}
             </h2>
@@ -197,7 +197,7 @@
    
 
   <hr>
-
+  {% endblock content%}
   <!-- Bootstrap core JavaScript -->
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>

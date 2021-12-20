@@ -2,6 +2,7 @@
 
 from pathlib import Path
 import os
+from posixpath import basename
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,6 +31,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'aplicaciones.blog',
     'import_export',
+    'django.contrib.sites',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'ckeditor',
 ]
 
@@ -48,7 +54,7 @@ ROOT_URLCONF = 'django_blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -101,7 +107,7 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-AUTH_USER_MODEL = 'auth.User'
+AUTH_USER_MODEL = 'blog.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
@@ -120,9 +126,20 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
+MEDIA_URL = 'media/'
+STATIC_ROOT = os.path.join(BASE_DIR,'static_root')
+MEDIA_ROOT = os.path.join(BASE_DIR,'media_root')
 
 LOGIN_REDIRECT_URL = '/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1

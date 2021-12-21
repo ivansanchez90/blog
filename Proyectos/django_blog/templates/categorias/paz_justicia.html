@@ -20,6 +20,7 @@ Paz, Justicia e Instituciones Sólidas
         {% if posts %}
         {% for post in posts %}
         <div class="container">
+          <a href="{{ post.get_absolute_url }}">
         <div class="post-preview">
             <h2 class="post-title">
               {{ post.title }}

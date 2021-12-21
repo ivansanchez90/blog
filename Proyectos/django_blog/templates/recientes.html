@@ -1,13 +1,31 @@
 {% extends 'index.html' %}
 {% load static %}
-{% load crispy_forms_tags %}
 
 {% block titulo %}
 Post List
 {% endblock titulo %}
 {% block titulo_principal %}
 {% endblock titulo_principal %}
-
+{% block search %}
+            <nav >
+              <div class="container" style="margin-bottom: 20px;">
+                <div class="row">
+                  <div class="col-md-12 search">
+                    <form method="get">
+                      <div id='custom-search-input'>
+                        <div class="input-group col-md-12">
+                          <input type="text" class="form-control" placeholder="Buscar..." name="buscar" value="{{ request.GET.buscar }}">
+                          <span class="input-group-list"></span>
+                          <i class="icon icon-search"></i>
+                          <button type="submit" class="boton btn-success">Buscar</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div> 
+            </nav><!-- barra de busqueda --> 
+            {% endblock search %}
 {% block content%}
 <!-- Main Content -->
 <div class="container">
@@ -15,27 +33,27 @@ Post List
       <div class="col-lg-8 col-md-10 mx-auto">
 
         {% block contenido%}
-        {% if object_list %}
-        {% for object in object_list %}
+        {% if posts %}
+        {% for post in posts %}
         <div class="container">
         <div class="post-preview">
-          <a href="{{ object.get_absolute_url }}">
+          <a href="{{ post.get_absolute_url }}">
             <h2 class="post-title">
-              {{ object.title }}
+              {{ post.title }}
             </h2>
             <h3 class="post-subtitle">
-              {{ object.content }}
+              {{ post.content }}
             </h3>
           </a>
           <p class="post-meta">Escrito por
-            <strong>{{ object.author }}</strong> el
-            {{ object.publish_date }} <br>
-            Categoria: {{ object.categoria }}
+            <strong>{{ post.author }}</strong> el
+            {{ post.publish_date }} <br>
+            Categoria: {{ post.categoria }}
             <hr>
-            <span><i class="fas fa-thumbs-up"></i>{{ object.get_like_count }}</span>
-            <span><i class="fas fa-eye"></i>{{ object.get_view_count }}</span>
-            <span><i class="fas fa-comments"></i>{{ object.get_comment_count }}</span><br>
-            <span>Publicado hace {{ object.publish_date|timesince }} </span>
+            <span><i class="fas fa-thumbs-up"></i>{{ post.get_like_count }}</span>
+            <span><i class="fas fa-eye"></i>{{ post.get_view_count }}</span>
+            <span><i class="fas fa-comments"></i>{{ post.get_comment_count }}</span><br>
+            <span>Publicado hace {{ post.publish_date|timesince }} </span>
           </p>
         </div>
         <hr>

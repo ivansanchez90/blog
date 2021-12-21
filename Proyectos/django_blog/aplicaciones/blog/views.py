@@ -450,3 +450,28 @@ def home(request):
     posts = paginator.get_page(page)
 
     return render(request, "blog:detail",{'posts':posts})
+
+def busqueda(request):
+    queryset = request.GET.get("buscar")
+    posts = Post.objects.filter(state = True)
+    if queryset:
+        posts = Post.objects.filter(
+            Q(title__icontains = queryset)|
+            Q(content__icontains = queryset)
+        ).distinct()
+
+    paginator = Paginator(posts,2)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+
+    return render(request, "busqueda.html",{'posts':posts})
+
+def recientes(request):
+    posts = Post.objects.all().order_by('publish_date')
+
+    return render(request, "recientes.html", {'posts':posts})
+
+def antiguos(request):
+    posts = Post.objects.all().order_by('-publish_date')
+
+    return render(request, "antiguos.html", {'posts':posts})

@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="es">
 
@@ -43,7 +44,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'blog:list' %}">Inicio</a>
           </li>
-          
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'blog:busqueda' %}">Busqueda</a>
+          </li>
           {% if request.user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'blog:create' %}">Crear Blog</a>
@@ -87,24 +90,7 @@
           <div class="site-heading" style="padding-top: 80px; padding-bottom: 40px;">
             <h1>{% block titulo_principal %}{% endblock titulo_principal %}</h1>
         {% block search %}
-            <nav >
-              <div class="container" style="margin-bottom: 20px;">
-                <div class="row">
-                  <div class="col-md-12 search">
-                    <form method="get">
-                      <div id='custom-search-input'>
-                        <div class="input-group col-md-12">
-                          <input type="text" class="form-control" placeholder="Buscar..." name="buscar" value="{{ request.GET.buscar }}">
-                          <span class="input-group-list"></span>
-                          <i class="icon icon-search"></i>
-                          <button type="submit" class="boton btn-success">Buscar</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div> 
-            </nav><!-- barra de busqueda --> 
+            
             {% endblock search %}
             
             {% block categorias %}<div class="categorias">

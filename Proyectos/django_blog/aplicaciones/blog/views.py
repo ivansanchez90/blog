@@ -467,11 +467,11 @@ def busqueda(request):
     return render(request, "busqueda.html",{'posts':posts})
 
 def recientes(request):
-    posts = Post.objects.all().order_by('publish_date')
+    posts = Post.objects.all().order_by('-publish_date')
 
     return render(request, "recientes.html", {'posts':posts})
 
 def antiguos(request):
-    posts = Post.objects.all().order_by('-publish_date')
+    posts = Post.objects.all().order_by('publish_date')
 
     return render(request, "antiguos.html", {'posts':posts})

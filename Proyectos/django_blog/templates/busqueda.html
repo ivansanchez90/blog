@@ -27,12 +27,20 @@ Post List
             </nav><!-- barra de busqueda --> 
             {% endblock search %}
 {% block content%}
-<!-- Main Content -->
+<!-- Main Content --><div class="container">
+          <div class="clearfix">
+            <a href="{% url 'blog:antiguos'%}" class="btn btn-primary float-left">Antiguos</a>
+            <a href="{% url 'blog:recientes'%}" class="btn btn-primary float-right">Recientes</a>
+          </div>
+        </div>
 <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
 
+        
         {% block contenido%}
+        
+        
         {% if posts %}
         {% for post in posts %}
         <div class="container">

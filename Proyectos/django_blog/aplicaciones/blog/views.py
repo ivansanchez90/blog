@@ -467,31 +467,11 @@ def busqueda(request):
     return render(request, "busqueda.html",{'posts':posts})
 
 def recientes(request):
-    queryset = request.GET.get("buscar")
-    posts = Post.objects.filter(state = True).order_by('-publish_date')
-    if queryset:
-        posts = Post.objects.filter(
-            Q(title__icontains = queryset)|
-            Q(content__icontains = queryset)
-        ).distinct()
+    posts = Post.objects.all().order_by('publish_date')
 
-    paginator = Paginator(posts,2)
-    page = request.GET.get('page')
-    posts = paginator.get_page(page)
-
-    return render(request, "recientes.html",{'posts':posts})
+    return render(request, "recientes.html", {'posts':posts})
 
 def antiguos(request):
-    queryset = request.GET.get("buscar")
-    posts = Post.objects.filter(state = True).order_by('publish_date')
-    if queryset:
-        posts = Post.objects.filter(
-            Q(title__icontains = queryset)|
-            Q(content__icontains = queryset)
-        ).distinct()
+    posts = Post.objects.all().order_by('-publish_date')
 
-    paginator = Paginator(posts,2)
-    page = request.GET.get('page')
-    posts = paginator.get_page(page)
-
-    return render(request, "antiguos.html",{'posts':posts})
+    return render(request, "antiguos.html", {'posts':posts})
